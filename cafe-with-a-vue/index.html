@@ -46,7 +46,8 @@
         },
         computed: {
           copyrightLayout() {
-            return 'Copyright ' + this.restaurantName + ' 2019';
+            const currentYear = new Date();
+            return 'Copyright ' + this.restaurantName + ' ' + currentYear.getFullYear();
           }
         }
       })
