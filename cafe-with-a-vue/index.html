@@ -33,7 +33,7 @@
             <div>
               <label for="add-item-quantity">Quantity:</label>
               <input id="add-item-quantity" type="number" v-model="itemCount" />
-              <button @click="addToShoppingCart">Add to Shopping Cart</button>
+              <button v-on:click="addToShoppingCart()">Add to Shopping Cart</button>
             </div>
           </div>
         </div>
@@ -107,10 +107,9 @@
             return `Copyright ${this.restaurantName} ${currentYear}`
           }
         },
-        method: {
+        methods: {
           addToShoppingCart() {
-            console.log(this.count + '  ' + this.itemCount);
-            return this.count + this.itemCount;
+            this.count = parseInt(this.count) + parseInt(this.itemCount);
           }
         }
       })
