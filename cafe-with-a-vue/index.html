@@ -30,10 +30,10 @@
             <h3>{{cake.name}}</h3>
             <p v-if="cake.inStock">In Stock</p>
             <p v-else>Out of Stock</p>
-            <div>
-              <label for="add-item-quantity">Quantity:</label>
-              <input id="add-item-quantity" type="number" v-model="itemCount" />
-              <button v-on:click="addToShoppingCart()">Add to Shopping Cart</button>
+            <div v-if="cake.inStock">
+              <label for="add-item-quantity">Quantity: {{ cake.quantity }}</label>
+              <input id="add-item-quantity" type="number" v-model="cake.amount" />
+              <button v-on:click="addToShoppingCart(cake.amount)">Add to Shopping Cart</button>
             </div>
           </div>
         </div>
@@ -65,7 +65,6 @@
         el: '#app',
         data: {
           count: 0,
-          itemCount: Number,
           address: '9274 Beurre Ave, Paris, France',
           email: 'hello@cafewithavue.bakery',
           phone: '+08 88 88 88 88 88',
@@ -78,7 +77,8 @@
                 alt: 'A crossiant'
               },
               inStock: true,
-              quantity: 1
+              quantity: 6,
+              amount: Number
             },
             {
               name: 'French Baguette',
@@ -87,7 +87,8 @@
                 alt: 'Four French Baguettes'
               },
               inStock: true,
-              quantity: 1
+              quantity: 15,
+              amount: Number
             },
             {
               name: 'Éclair',
@@ -96,20 +97,20 @@
                 alt: 'Chocolate Éclair'
               },
               inStock: false,
-              quantity: 1
+              quantity: 0,
+              amount: Number
             }
           ]
         },
         computed: {
           copyright() {
             const currentYear = new Date().getFullYear()
-
             return `Copyright ${this.restaurantName} ${currentYear}`
           }
         },
         methods: {
-          addToShoppingCart() {
-            this.count = parseInt(this.count) + parseInt(this.itemCount);
+          addToShoppingCart(quantity) {
+            this.count += parseInt(quantity);
           }
         }
       })
