@@ -11,31 +11,15 @@
 
       <section class="menu">
         <h2>Menu</h2>
-        <div v-for="item in simpleMenu" :key="item.name" class="menu-item">
-          <img
-            class="menu-item__image"
-            :src="item.image.source"
-            :alt="item.image.alt"
-          />
-          <div>
-            <h3>{{ item.name }}</h3>
-            <p v-if="item.inStock">In Stock</p>
-            <p v-else>Out of Stock</p>
-            <div>
-              <label for="add-item-quantity"
-                >Quantity: {{ item.quantity }}</label
-              >
-              <input
-                v-model.number="item.quantity"
-                id="add-item-quantity"
-                type="number"
-              />
-              <button @click="addToShoppingCart(item.quantity)">
-                Add to Shopping Cart
-              </button>
-            </div>
-          </div>
-        </div>
+        <MenuItem
+        v-for="item in simpleMenu" 
+        :key="item.name"
+        :name="item.name"
+        :image="item.image"
+        :quantity="item.quantity"
+        :inStock="item.inStock"
+        :addToShoppingCart="addToShoppingCart"        
+        />
       </section>
 
       <aside class="shopping-cart">
@@ -59,10 +43,12 @@
 </template>
 
 <script>
+import MenuItem from "@/components/MenuItem.vue"
 
 export default {
   name: 'app',
   components: {
+    MenuItem
   },
   data: function() {
     return {
@@ -141,17 +127,6 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-
-  .menu-item {
-    display: flex;
-    width: 500px;
-    justify-content: space-between;
-    margin-bottom: 30px;
-  }
-
-  .menu-item__image {
-    max-width: 300px;
   }
 
   .shopping-cart {

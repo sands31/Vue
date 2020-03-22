@@ -2,23 +2,23 @@
     <div class="menu-item">
         <img
         class="menu-item__image"
-        :src="item.image.source"
-        :alt="item.image.alt"
+        :src="image.source"
+        :alt="image.alt"
         />
         <div>
-        <h3>{{ item.name }}</h3>
-        <p v-if="item.inStock">In Stock</p>
+        <h3>{{ name }}</h3>
+        <p v-if="inStock">In Stock</p>
         <p v-else>Out of Stock</p>
         <div>
             <label for="add-item-quantity"
-            >Quantity: {{ item.quantity }}</label
+            >Quantity: {{ quantity }}</label
             >
             <input
-            v-model.number="item.quantity"
+            v-model.number="quantity"
             id="add-item-quantity"
             type="number"
             />
-            <button @click="addToShoppingCart(item.quantity)">
+            <button @click="addToShoppingCart(quantity)">
             Add to Shopping Cart
             </button>
         </div>
@@ -29,22 +29,7 @@
 <script>
 export default {
     name: 'MenuItem',
-    props: {
-        item: {
-            name: String,
-            image: {
-                source: String,
-                alt: String
-            },
-            inStock: Boolean,
-            quantity: Number       
-        }
-    },
-    methods: {
-        addToShoppingCart(amount) {
-            this.shoppingCart += amount
-        }
-  } 
+    props: ['name', 'image', 'quantity', 'inStock', 'addToShoppingCart']
 }
 </script>
 
