@@ -45,6 +45,8 @@ export default {
     return {
       restaurantName: 'Cafe with A Vue',
       shoppingCart: 0,
+      date: new Date(),
+      discount: false,
       simpleMenu: [
         {
           name: 'Crossiant',
@@ -81,7 +83,7 @@ export default {
   },
   computed: {
     copyright() {
-      const currentYear = new Date().getFullYear()
+      const currentYear = this.date.getFullYear()
 
       return `Copyright ${this.restaurantName} ${currentYear}`
     }
@@ -89,6 +91,13 @@ export default {
   methods: {
     addToShoppingCart(amount) {
       this.shoppingCart += amount
+    }
+  },
+  beforeMount() {
+    if (this.date.getDate() % 2 == 0) {
+      for (let i in this.simpleMenu) {
+        this.simpleMenu[i].price = (0.9 * this.simpleMenu[i].price).toFixed(2)
+      }
     }
   }
 }
