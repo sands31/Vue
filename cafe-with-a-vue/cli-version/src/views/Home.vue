@@ -92,13 +92,6 @@ export default {
     addToShoppingCart(amount) {
       this.shoppingCart += amount
     }
-  },
-  beforeMount() {
-    if (this.date.getDate() % 2 == 0) {
-      for (let i in this.simpleMenu) {
-        this.simpleMenu[i].price = (0.9 * this.simpleMenu[i].price).toFixed(2)
-      }
-    }
   }
 }
 </script>
