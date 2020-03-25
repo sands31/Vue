@@ -1,7 +1,26 @@
 <script>
 export default {
   name: 'MenuItem',
-  props: ['addToShoppingCart', 'image', 'inStock', 'name', 'price', 'quantity'],
+  props: {
+    addToShoppingCart:  {
+      type: Function,
+      required: true
+    },
+    image: {
+      source: String,
+      alt: String
+    },
+    inStock: {
+      type: Boolean,
+      required: true
+    },
+    name: {
+      type: String,
+      default: "Patisserie"
+    },
+    price: Number,
+    quantity: Number
+  },
   data() {
     return {
       onSale: false
