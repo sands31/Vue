@@ -41,6 +41,11 @@ export default {
       }
     }
   },
+  methods: {
+    updateShoppingCart() {
+      this.$emit('add-items-to-cart', {amount: this.quantity})
+    }
+  },
   beforeMount() {
     const today = new Date().getDate()
 
@@ -62,7 +67,7 @@ export default {
       <div>
         <label for="add-item-quantity">Quantity: {{ quantity }}</label>
         <input v-model.number="quantity" id="add-item-quantity" type="number" />
-        <button @click="addToShoppingCart(quantity)">
+        <button @click="updateShoppingCart">
           Add to Shopping Cart
         </button>
       </div>
