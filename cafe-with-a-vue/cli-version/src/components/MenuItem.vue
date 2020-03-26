@@ -67,11 +67,10 @@ export default {
       <p v-else>Out of Stock</p>
       <div>
         <label for="add-item-quantity">Quantity: {{ quantity }}</label>
-        <input v-model.number="quantity" id="add-item-quantity" type="number" />
-        <BaseButton
-          @click="updateShoppingCart(quantity)"
-          text="Add to shopping cart"
-        />
+        <input v-model.number="quantity" id="add-item-quantity" type="number">
+        <BaseButton @click="updateShoppingCart(quantity)">
+            Add to shopping cart
+        </BaseButton>
       </div>
     </div>
   </div>
