@@ -47,8 +47,14 @@ export default {
     }
   },
   computed: {
-    ...mapState (['restaurantName', 'shoppingCart', 'simpleMenu']),
-    ...mapGetters (['copyright()'])
+    ...mapState ({
+      restaurantName: 'restaurantName',
+      shoppingCart: 'shoppingCart',
+      simpleMenu:  'simpleMenu'
+    }),
+    ...mapGetters ({
+      copyright: 'copyright()'
+    })
   },
   methods: {
     addToShoppingCart(amount) {
